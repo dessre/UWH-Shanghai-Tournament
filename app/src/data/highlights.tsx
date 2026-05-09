@@ -93,14 +93,5 @@ export const highlights: HighlightCard[] = [
     date: 'Apr 2026',
     size: 'medium',
   },
-    {
-    id: 8,
-    title: 'Team Team Opens',
-    shortDescription: 'Early bird registration is now open for the 2026 Shanghai UWH Tournament. Secure your spot before July 31st for special rates.',
-    fullDescription: 'Early bird registration is now open for the 2026 Shanghai UWH Tournament. Secure your spot before July 31st for special rates. Limited spots available, so register early!',
-    image: '/images/card-nightlife.jpg',
-    category: 'news',
-    date: 'Apr 2026',
-    size: 'medium',
-  },
+  
 ]
