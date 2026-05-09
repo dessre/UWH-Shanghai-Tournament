@@ -5,8 +5,6 @@ const footerLinks = [
   {
     title: 'Tournament',
     links: [
-      { name: '2026 Tournament', path: '/' },
-      { name: '2025 Tournament', path: '/2025-tournament' },
       { name: 'Registration', path: '/registration' },
       { name: 'Teams', path: '/teams' },
     ],

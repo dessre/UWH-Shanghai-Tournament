@@ -22,6 +22,7 @@ const highlights: HighlightCard[] = [
     category: 'merchandise',
     date: 'Apr 2026',
     size: 'large',
+    link: '#/highlight/1',
   },
   {
     id: 2,
@@ -31,8 +32,7 @@ const highlights: HighlightCard[] = [
     category: 'training',
     date: 'Sep 2026',
     size: 'medium',
-    link: '/venue#pool-sessions',
-    anchor: 'highlight-pool',
+    link: '#/highlight/2',
   },
   {
     id: 3,
@@ -42,6 +42,7 @@ const highlights: HighlightCard[] = [
     category: 'events',
     date: 'Oct 2026',
     size: 'medium',
+    link: '#/highlight/3',
   },
   {
     id: 4,
@@ -51,6 +52,7 @@ const highlights: HighlightCard[] = [
     category: 'news',
     date: 'Mar 2026',
     size: 'small',
+    link: '#/highlight/4',
   },
   {
     id: 5,
@@ -60,7 +62,7 @@ const highlights: HighlightCard[] = [
     category: 'events',
     date: 'Oct 24, 2026',
     size: 'small',
-    anchor: 'highlight-banquet',
+    link: '#/highlight/5',
   },
   {
     id: 6,
@@ -70,6 +72,7 @@ const highlights: HighlightCard[] = [
     category: 'events',
     date: 'Oct 25, 2026',
     size: 'large',
+    link: '#/highlight/6',
   },
   {
     id: 7,
@@ -79,6 +82,7 @@ const highlights: HighlightCard[] = [
     category: 'news',
     date: 'Mar 2026',
     size: 'small',
+    link: '#/highlight/7',
   },
 ]
 
