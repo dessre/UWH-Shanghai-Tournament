@@ -1,91 +1,7 @@
 import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { ShoppingBag, Dumbbell, Music, Newspaper, ArrowRight } from 'lucide-react'
-
-interface HighlightCard {
-  id: number
-  title: string
-  description: string
-  image: string
-  category: 'merchandise' | 'training' | 'events' | 'news'
-  date: string
-  size: 'large' | 'medium' | 'small'
-  link?: string
-  anchor?: string
-}
-
-const highlights: HighlightCard[] = [
-  {
-    id: 1,
-    title: '2026 Tournament Merchandise Collection',
-    description: 'Exclusive UWH Shanghai 2026 apparel, towels, and accessories now available for pre-order. Limited edition designs featuring our signature underwater art theme.',
-    image: '/images/card-merch.jpg',
-    category: 'merchandise',
-    date: 'Apr 2026',
-    size: 'large',
-    link: '/highlight/1',
-  },
-  {
-    id: 2,
-    title: 'Pre-Tournament Pool Sessions',
-    description: 'Open warm-up training at Shanghai JingAn Sports Center pool every weekend in September. Free for all registered teams.',
-    image: '/images/card-pool.jpg',
-    category: 'training',
-    date: 'Sep 2026',
-    size: 'medium',
-    link: '/highlight/2',
-  },
-  {
-    id: 3,
-    title: 'Shanghai Night Tour for Athletes',
-    description: 'A special guided evening tour of The Bund and Lujiazui skyline exclusively for tournament participants and their families.',
-    image: '/images/card-shanghai.jpg',
-    category: 'events',
-    date: 'Oct 2026',
-    size: 'medium',
-    link: '/highlight/3',
-  },
-  {
-    id: 4,
-    title: 'Youth Division Added for 2026',
-    description: 'We are excited to announce a new youth division (ages 15-18) for the 2026 tournament, expanding opportunities for young athletes.',
-    image: '/images/card-game.jpg',
-    category: 'news',
-    date: 'Mar 2026',
-    size: 'small',
-    link: '/highlight/4',
-  },
-  {
-    id: 5,
-    title: 'Welcome Banquet at Yu Garden',
-    description: 'Experience authentic Shanghai cuisine at our traditional welcome banquet in the historic Yu Garden area.',
-    image: '/images/shanghai-food.jpg',
-    category: 'events',
-    date: 'Oct 24, 2026',
-    size: 'small',
-    link: '/highlight/5',
-  },
-  {
-    id: 6,
-    title: 'Awards Ceremony & After Party',
-    description: 'Join us for the grand awards ceremony followed by a celebration at one of Shanghai premier waterfront venues.',
-    image: '/images/card-award.jpg',
-    category: 'events',
-    date: 'Oct 25, 2026',
-    size: 'large',
-    link: '/highlight/6',
-  },
-  {
-    id: 7,
-    title: 'Team Registration Opens',
-    description: 'Early bird registration is now open for the 2026 Shanghai UWH Tournament. Secure your spot before July 31st for special rates.',
-    image: '/images/card-nightlife.jpg',
-    category: 'news',
-    date: 'Apr 2026',
-    size: 'small',
-    link: '/highlight/7',
-  },
-]
+import { highlights } from '../data/highlights.tsx'
 
 const categories = [
   { id: 'all', label: 'All', icon: Newspaper },
@@ -180,23 +96,14 @@ export default function LatestHighlights() {
                 ? 'md:col-span-1 md:row-span-2'
                 : ''
 
-            const CardWrapper = card.link
-              ? ({ children }: { children: React.ReactNode }) => (
+            const CardWrapper = ({ children }: { children: React.ReactNode }) => (
                   <Link
-                    to={card.link}
+                    to={`/highlight/${card.id}`}
                     className={`group relative rounded-2xl overflow-hidden cursor-pointer ${colSpan}`}
                     style={{ animationDelay: `${index * 0.08}s` }}
                   >
                     {children}
                   </Link>
-                )
-              : ({ children }: { children: React.ReactNode }) => (
-                  <div
-                    className={`group relative rounded-2xl overflow-hidden cursor-pointer ${colSpan}`}
-                    style={{ animationDelay: `${index * 0.08}s` }}
-                  >
-                    {children}
-                  </div>
                 )
 
             return (
@@ -234,7 +141,7 @@ export default function LatestHighlights() {
                   {/* Description - only on larger cards */}
                   {(card.size === 'large' || card.size === 'medium') && (
                     <p className="text-white/60 text-sm leading-relaxed line-clamp-2 mb-3">
-                      {card.description}
+                      {card.shortDescription}
                     </p>
                   )}
 

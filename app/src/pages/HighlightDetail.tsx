@@ -1,89 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { ArrowLeft, ShoppingBag, Dumbbell, Music, Newspaper, Calendar, Tag } from 'lucide-react'
-
-interface HighlightCard {
-  id: number
-  title: string
-  description: React.ReactNode
-  image: string
-  category: 'merchandise' | 'training' | 'events' | 'news'
-  date: string
-  size: 'large' | 'medium' | 'small'
-  link?: string
-  anchor?: string
-}
-
-const highlights: HighlightCard[] = [
-  {
-    id: 1,
-    title: '2026 Tournament Merchandise Collection',
-    description: 'Exclusive UWH Shanghai 2026 apparel, towels, and accessories now available for pre-order. Limited edition designs featuring our signature underwater art theme.',
-    image: '/images/card-merch.jpg',
-    category: 'merchandise',
-    date: 'Apr 2026',
-    size: 'large',
-  },
-  {
-    id: 2,
-    title: 'Pre-Tournament Pool Sessions',
-    description: (
-      <>
-        We are pleased to offer complimentary pre-tournament pool access to all registered teams at the Shanghai JingAn Sports Center throughout October. Specific dates will be confirmed and communicated in due course. Advance booking is required to secure your session. Please visit the{' '}
-        <Link to="/venue#pool-sessions" className="text-[#4FF6FF] hover:underline">venue page</Link>{' '}
-        for more details.
-      </>
-    ),
-    image: '/images/card-pool.jpg',
-    category: 'training',
-    date: 'Sep 2026',
-    size: 'medium',
-  },
-  {
-    id: 3,
-    title: 'Shanghai Night Tour for Athletes',
-    description: 'A special guided evening tour of The Bund and Lujiazui skyline exclusively for tournament participants and their families. Experience Shanghai\'s breathtaking night views and vibrant atmosphere.',
-    image: '/images/card-shanghai.jpg',
-    category: 'events',
-    date: 'Oct 2026',
-    size: 'medium',
-  },
-  {
-    id: 4,
-    title: 'Youth Division Added for 2026',
-    description: 'We are excited to announce a new youth division (ages 15-18) for the 2026 tournament, expanding opportunities for young athletes. This division will feature its own dedicated matches and awards.',
-    image: '/images/card-game.jpg',
-    category: 'news',
-    date: 'Mar 2026',
-    size: 'small',
-  },
-  {
-    id: 5,
-    title: 'Welcome Banquet at Yu Garden',
-    description: 'Experience authentic Shanghai cuisine at our traditional welcome banquet in the historic Yu Garden area. This special event will feature local delicacies and cultural performances.',
-    image: '/images/shanghai-food.jpg',
-    category: 'events',
-    date: 'Oct 24, 2026',
-    size: 'small',
-  },
-  {
-    id: 6,
-    title: 'Awards Ceremony & After Party',
-    description: 'Join us for the grand awards ceremony followed by a celebration at one of Shanghai premier waterfront venues. Celebrate the tournament champions and enjoy an evening of entertainment.',
-    image: '/images/card-award.jpg',
-    category: 'events',
-    date: 'Oct 25, 2026',
-    size: 'large',
-  },
-  {
-    id: 7,
-    title: 'Team Registration Opens',
-    description: 'Early bird registration is now open for the 2026 Shanghai UWH Tournament. Secure your spot before July 31st for special rates. Limited spots available, so register early!',
-    image: '/images/card-nightlife.jpg',
-    category: 'news',
-    date: 'Mar 2026',
-    size: 'small',
-  },
-]
+import { highlights } from '../data/highlights.tsx'
 
 const categoryIcons = {
   merchandise: ShoppingBag,
@@ -163,7 +80,7 @@ export default function HighlightDetail() {
 
           <div className="prose prose-lg prose-invert max-w-none">
             <div className="text-white/80 leading-relaxed text-lg">
-              {highlight.description}
+              {highlight.fullDescription}
             </div>
           </div>
 

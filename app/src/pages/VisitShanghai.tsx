@@ -151,7 +151,7 @@ export default function VisitShanghai() {
       </section>
 
       {/* Welcome Orientation CityWalk */}
-      <section className="py-16 section-sand">
+      <section id="citywalk" className="py-16 section-sand scroll-mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="p-8 rounded-2xl bg-white shadow-sm border border-[#00A9B5]/10">
             <div className="flex items-center gap-4 mb-6">
