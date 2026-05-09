@@ -1,4 +1,4 @@
-import { MapPin, Waves, Utensils, Train, Hotel, Bus, Clock, Megaphone } from 'lucide-react'
+import { MapPin, Waves, Utensils, Train, Hotel, Bus, Clock } from 'lucide-react'
 
 const poolFeatures = [
   {
@@ -76,29 +76,6 @@ export default function Venue() {
             featuring Olympic-standard pools designed for international
             underwater hockey competition.
           </p>
-        </div>
-      </section>
-
-      {/* Announcement Banner */}
-      <section className="py-6">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <a
-            href="/#/highlight-pool"
-            className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-[#00A9B5]/20 to-[#4FF6FF]/10 border border-[#00A9B5]/30 hover:border-[#00A9B5]/60 hover:from-[#00A9B5]/30 transition-all duration-300 group"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#00A9B5]/20 flex items-center justify-center shrink-0">
-              <Megaphone className="w-5 h-5 text-[#4FF6FF] group-hover:scale-110 transition-transform" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-white font-medium text-sm sm:text-base">
-                Pre-tournament Pool Open Session:{' '}
-                <span className="text-[#4FF6FF]">To Be Announced</span>
-              </p>
-            </div>
-            <span className="text-white/40 text-xs hidden sm:block group-hover:text-[#4FF6FF] transition-colors">
-              View details
-            </span>
-          </a>
         </div>
       </section>
 

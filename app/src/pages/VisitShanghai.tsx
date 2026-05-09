@@ -8,7 +8,7 @@ import {
   Coffee,
   Camera,
   UtensilsCrossed,
-  Megaphone,
+  Map,
 } from 'lucide-react'
 
 interface Attraction {
@@ -150,26 +150,37 @@ export default function VisitShanghai() {
         </div>
       </section>
 
-      {/* Announcement Banner */}
-      <section className="py-6">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6">
-          <a
-            href="/#/highlight-banquet"
-            className="flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-[#00A9B5]/20 to-[#4FF6FF]/10 border border-[#00A9B5]/30 hover:border-[#00A9B5]/60 hover:from-[#00A9B5]/30 transition-all duration-300 group"
-          >
-            <div className="w-10 h-10 rounded-full bg-[#00A9B5]/20 flex items-center justify-center shrink-0">
-              <Megaphone className="w-5 h-5 text-[#4FF6FF] group-hover:scale-110 transition-transform" />
+      {/* Welcome Orientation CityWalk */}
+      <section className="py-16 section-sand">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="p-8 rounded-2xl bg-white shadow-sm border border-[#00A9B5]/10">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-14 h-14 rounded-2xl bg-[#00A9B5]/10 flex items-center justify-center">
+                <Map className="w-7 h-7 text-[#00A9B5]" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-semibold text-[#001B2F]">
+                  Welcome Orientation <span className="text-[#00A9B5]">CityWalk</span>
+                </h2>
+                <p className="text-[#001B2F]/50 text-sm">
+                  Guided tour for tournament participants
+                </p>
+              </div>
             </div>
-            <div className="flex-1 min-w-0">
-              <p className="text-white font-medium text-sm sm:text-base">
-                Welcome Orientation CityWalk on{' '}
-                <span className="text-[#4FF6FF]">Oct 22, 23, 24</span>
-              </p>
+
+            <div className="flex items-center justify-center py-12 rounded-xl bg-[#001B2F]/5 border border-dashed border-[#001B2F]/10">
+              <div className="text-center">
+                <Map className="w-12 h-12 text-[#00A9B5]/30 mx-auto mb-3" />
+                <p className="text-[#001B2F] font-semibold text-lg">
+                  Oct 22, 23, 24
+                </p>
+                <p className="text-[#001B2F]/40 text-sm mt-1 max-w-md">
+                  Detailed itinerary and registration information will be
+                  published here as the tournament approaches. Stay tuned!
+                </p>
+              </div>
             </div>
-            <span className="text-white/40 text-xs hidden sm:block group-hover:text-[#4FF6FF] transition-colors">
-              View details
-            </span>
-          </a>
+          </div>
         </div>
       </section>
 

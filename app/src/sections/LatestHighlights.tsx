@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { ShoppingBag, Dumbbell, Music, Newspaper, ArrowRight } from 'lucide-react'
 
@@ -81,7 +81,7 @@ const highlights: HighlightCard[] = [
     description: 'Early bird registration is now open for the 2026 Shanghai UWH Tournament. Secure your spot before July 31st for special rates.',
     image: '/images/card-nightlife.jpg',
     category: 'news',
-    date: 'Mar 2026',
+    date: 'Apr 2026',
     size: 'small',
     link: '/highlight/7',
   },
@@ -95,13 +95,40 @@ const categories = [
   { id: 'news', label: 'News', icon: Newspaper },
 ] as const
 
+const parseDate = (dateStr: string): Date => {
+  const match = dateStr.match(/(\w{3})\s*(\d{1,2})?\s*,?\s*(\d{4})/)
+  if (match) {
+    const month = match[1]
+    const day = match[2] ? parseInt(match[2], 10) : 1
+    const year = parseInt(match[3], 10)
+    const monthIndex = new Date(`${month} 1, ${year}`).getMonth()
+    return new Date(year, monthIndex, day)
+  }
+  return new Date(dateStr)
+}
+
 export default function LatestHighlights() {
   const [activeFilter, setActiveFilter] = useState<string>('all')
 
-  const filtered =
-    activeFilter === 'all'
-      ? highlights
-      : highlights.filter((h) => h.category === activeFilter)
+  const filtered = useMemo(() => {
+    const now = new Date()
+    const currentMonth = now.getMonth()
+    const currentYear = now.getFullYear()
+
+    const highlightsByDate = highlights.filter((h) => {
+      const cardDate = parseDate(h.date)
+      const cardMonth = cardDate.getMonth()
+      const cardYear = cardDate.getFullYear()
+
+      if (cardYear < currentYear) return true
+      if (cardYear === currentYear && cardMonth <= currentMonth) return true
+      return false
+    })
+
+    return activeFilter === 'all'
+      ? highlightsByDate
+      : highlightsByDate.filter((h) => h.category === activeFilter)
+  }, [activeFilter])
 
   return (
     <section className="section-sand py-24 lg:py-32">

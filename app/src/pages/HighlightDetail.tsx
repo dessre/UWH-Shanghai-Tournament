@@ -4,7 +4,7 @@ import { ArrowLeft, ShoppingBag, Dumbbell, Music, Newspaper, Calendar, Tag } fro
 interface HighlightCard {
   id: number
   title: string
-  description: string
+  description: React.ReactNode
   image: string
   category: 'merchandise' | 'training' | 'events' | 'news'
   date: string
@@ -26,7 +26,13 @@ const highlights: HighlightCard[] = [
   {
     id: 2,
     title: 'Pre-Tournament Pool Sessions',
-    description: 'Open warm-up training at Shanghai JingAn Sports Center pool every weekend in September. Free for all registered teams. Sessions are available on Saturdays and Sundays from 9:00 AM to 5:00 PM. Advanced booking is recommended to secure your slot.',
+    description: (
+      <>
+        We are pleased to offer complimentary pre-tournament pool access to all registered teams at the Shanghai JingAn Sports Center throughout October. Specific dates will be confirmed and communicated in due course. Advance booking is required to secure your session. Please visit the{' '}
+        <Link to="/venue#pool-sessions" className="text-[#4FF6FF] hover:underline">venue page</Link>{' '}
+        for more details.
+      </>
+    ),
     image: '/images/card-pool.jpg',
     category: 'training',
     date: 'Sep 2026',
