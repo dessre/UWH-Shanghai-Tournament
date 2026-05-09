@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ShoppingBag, Dumbbell, Music, Newspaper, ArrowRight } from 'lucide-react'
 
 interface HighlightCard {
@@ -22,7 +23,7 @@ const highlights: HighlightCard[] = [
     category: 'merchandise',
     date: 'Apr 2026',
     size: 'large',
-    link: '#/highlight/1',
+    link: '/highlight/1',
   },
   {
     id: 2,
@@ -32,7 +33,7 @@ const highlights: HighlightCard[] = [
     category: 'training',
     date: 'Sep 2026',
     size: 'medium',
-    link: '#/highlight/2',
+    link: '/highlight/2',
   },
   {
     id: 3,
@@ -42,7 +43,7 @@ const highlights: HighlightCard[] = [
     category: 'events',
     date: 'Oct 2026',
     size: 'medium',
-    link: '#/highlight/3',
+    link: '/highlight/3',
   },
   {
     id: 4,
@@ -52,7 +53,7 @@ const highlights: HighlightCard[] = [
     category: 'news',
     date: 'Mar 2026',
     size: 'small',
-    link: '#/highlight/4',
+    link: '/highlight/4',
   },
   {
     id: 5,
@@ -62,7 +63,7 @@ const highlights: HighlightCard[] = [
     category: 'events',
     date: 'Oct 24, 2026',
     size: 'small',
-    link: '#/highlight/5',
+    link: '/highlight/5',
   },
   {
     id: 6,
@@ -72,7 +73,7 @@ const highlights: HighlightCard[] = [
     category: 'events',
     date: 'Oct 25, 2026',
     size: 'large',
-    link: '#/highlight/6',
+    link: '/highlight/6',
   },
   {
     id: 7,
@@ -82,7 +83,7 @@ const highlights: HighlightCard[] = [
     category: 'news',
     date: 'Mar 2026',
     size: 'small',
-    link: '#/highlight/7',
+    link: '/highlight/7',
   },
 ]
 
@@ -154,18 +155,16 @@ export default function LatestHighlights() {
 
             const CardWrapper = card.link
               ? ({ children }: { children: React.ReactNode }) => (
-                  <a
-                    href={card.link}
-                    id={card.anchor}
-                    className={`group relative rounded-2xl overflow-hidden cursor-pointer block ${colSpan}`}
+                  <Link
+                    to={card.link}
+                    className={`group relative rounded-2xl overflow-hidden cursor-pointer ${colSpan}`}
                     style={{ animationDelay: `${index * 0.08}s` }}
                   >
                     {children}
-                  </a>
+                  </Link>
                 )
               : ({ children }: { children: React.ReactNode }) => (
                   <div
-                    id={card.anchor}
                     className={`group relative rounded-2xl overflow-hidden cursor-pointer ${colSpan}`}
                     style={{ animationDelay: `${index * 0.08}s` }}
                   >

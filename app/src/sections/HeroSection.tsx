@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { Calendar, MapPin, ChevronDown } from 'lucide-react'
+import { Calendar, MapPin } from 'lucide-react'
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null)
@@ -88,11 +88,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-        <span className="text-white/40 text-xs tracking-wider">SCROLL</span>
-        <ChevronDown className="w-5 h-5 text-white/40 animate-bounce" />
-      </div>
     </section>
   )
 }
