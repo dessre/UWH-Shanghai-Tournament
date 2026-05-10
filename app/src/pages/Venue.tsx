@@ -1,5 +1,132 @@
 import { MapPin, Waves, Utensils, Train, Hotel, Bus, Clock } from 'lucide-react'
 
+const galleryImages = [
+  {
+    src: '/images/venue-center.jpg',
+    alt: 'Shanghai JingAn Sports Center',
+    title: 'Shanghai JingAn Sports Center',
+    featured: true,
+  },
+  {
+    src: '/images/card-pool.jpg',
+    alt: 'Olympic-standard swimming pool',
+    title: 'Olympic Pool',
+    featured: false,
+  },
+  {
+    src: '/images/card-game.jpg',
+    alt: 'Underwater hockey competition',
+    title: 'Competition Action',
+    featured: false,
+  },
+  {
+    src: '/images/hero-bg.jpg',
+    alt: 'Pool facilities',
+    title: 'Pool Facilities',
+    featured: false,
+  },
+  {
+    src: '/images/card-award.jpg',
+    alt: 'Tournament awards',
+    title: 'Award Ceremony',
+    featured: false,
+  },
+]
+
+const hotelGalleryImages = [
+  {
+    src: '/images/venue-center.jpg',
+    alt: 'Yunfeng Grand Hotel',
+    title: 'Yunfeng Grand Hotel',
+    featured: true,
+  },
+  {
+    src: '/images/card-pool.jpg',
+    alt: 'Hotel lobby',
+    title: 'Hotel Lobby',
+    featured: false,
+  },
+  {
+    src: '/images/card-game.jpg',
+    alt: 'Hotel rooms',
+    title: 'Hotel Rooms',
+    featured: false,
+  },
+  {
+    src: '/images/hero-bg.jpg',
+    alt: 'Gala dinner',
+    title: 'Gala Dinner',
+    featured: false,
+  },
+  {
+    src: '/images/card-award.jpg',
+    alt: 'Awards ceremony',
+    title: 'Awards Ceremony',
+    featured: false,
+  },
+  {
+    src: '/images/venue-center.jpg',
+    alt: 'Hotel exterior',
+    title: 'Hotel Exterior',
+    featured: false,
+  },
+  {
+    src: '/images/card-pool.jpg',
+    alt: 'Gala dinner celebration',
+    title: 'Celebration',
+    featured: false,
+  },
+]
+
+interface GalleryImageProps {
+  image: {
+    src: string
+    alt: string
+    title: string
+    featured: boolean
+  }
+  layout?: 'horizontal' | 'vertical'
+}
+
+function GalleryImage({ image, layout = 'horizontal' }: GalleryImageProps) {
+  const { src, alt, title, featured } = image
+
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const target = e.target as HTMLImageElement
+    const sibling = target.previousElementSibling
+    if (sibling) {
+      sibling.remove()
+    }
+  }
+
+  return (
+    <div
+      className={`
+        relative rounded-2xl overflow-hidden group cursor-pointer
+        ${featured
+          ? layout === 'vertical'
+            ? 'col-span-2 md:col-span-3 lg:col-span-2 row-span-2 h-64 md:h-80 lg:h-96'
+            : 'row-span-2 h-full'
+          : 'h-40 md:h-48'
+        }
+      `}
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-[#00A9B5]/20 to-transparent" />
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+        onLoad={handleImageLoad}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+        <p className="text-white font-medium text-sm drop-shadow-lg">{title}</p>
+      </div>
+    </div>
+  )
+}
+
 const poolFeatures = [
   {
     icon: Waves,
@@ -122,6 +249,29 @@ export default function Venue() {
                 className="w-full h-full object-cover"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Gallery */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <span className="text-[#00A9B5] text-xs font-medium tracking-[0.15em] uppercase mb-3 block">
+              Gallery
+            </span>
+            <h2 className="text-3xl font-semibold text-white mb-4">
+              Venue & <span className="text-gradient">Competition</span>
+            </h2>
+            <p className="text-white/50 max-w-2xl mx-auto">
+              Take a closer look at our world-class facilities and moments from previous tournaments.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {galleryImages.map((image, index) => (
+              <GalleryImage key={index} image={image} layout="vertical" />
+            ))}
           </div>
         </div>
       </section>
@@ -277,6 +427,29 @@ export default function Venue() {
                 </p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Hotel & Gala Photo Gallery */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-12">
+            <span className="text-[#00A9B5] text-xs font-medium tracking-[0.15em] uppercase mb-3 block">
+              Gallery
+            </span>
+            <h2 className="text-3xl font-semibold text-white mb-4">
+              Hotel & <span className="text-gradient">Gala Dinner</span>
+            </h2>
+            <p className="text-white/50 max-w-2xl mx-auto">
+              Explore our partner hotel facilities and memorable moments from last year's gala dinner.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-4 gap-4 h-48">
+            {hotelGalleryImages.map((image, index) => (
+              <GalleryImage key={index} image={image} layout="horizontal" />
+            ))}
           </div>
         </div>
       </section>
