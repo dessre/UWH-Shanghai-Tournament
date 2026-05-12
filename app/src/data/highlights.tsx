@@ -68,9 +68,9 @@ export const highlights: HighlightCard[] = [
         <Link to="/visit-shanghai#citywalk" className="text-[#4FF6FF] hover:underline">Learn more</Link>
       </>
     ),
-    image: '/images/shanghai-food.jpg',
+    image: '/images/shanghai-flower.jpg',
     category: 'events',
-    date: 'Oct 24, 2026',
+    date: 'Aug 24, 2026',
     size: 'medium',
   },
   {

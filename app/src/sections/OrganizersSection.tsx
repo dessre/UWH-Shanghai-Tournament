@@ -1,19 +1,28 @@
 import { useEffect, useRef, useState } from 'react'
 
+import logoSsf from '../images/logo-shanghai-sports-federation.jpg'
+import logoCros from '../images/logo-cros-bretagne.jpg'
+import logoSjsf from '../images/logo-shanghai-jiang-an-sports-federation.png'
+import logoFfessm from '../images/logo-ffessm.png'
+import logoSau from '../images/logo-shanghai-azures-uwh-club.png'
+import logoSjsc from '../images/logo-shanghai-jing-an-sports-center.png'
+
 interface Organizer {
   name: string
   role: string
-  category: 'authority' | 'organizer' | 'host'
+  category: 'authority' | 'organizer' | 'host' | 'venue'
   initials: string
   color: string
+  logo?: string
 }
 
 const organizers: Organizer[] = [
-  { name: 'Shanghai Sports Federation', role: 'Supervisory Authority', category: 'authority', initials: 'SSF', color: 'from-[#00A9B5] to-[#008B8B]' },
-  { name: 'CROS Bretagne', role: 'International Support', category: 'authority', initials: 'CROS', color: 'from-[#4FF6FF] to-[#00A9B5]' },
-  { name: 'Shanghai JiangAn Sports Federation', role: 'Organizer', category: 'organizer', initials: 'SJSF', color: 'from-purple-500 to-indigo-500' },
-  { name: 'FFESSM', role: 'Technical Organizer', category: 'organizer', initials: 'FFE', color: 'from-amber-500 to-orange-500' },
-  { name: 'Shanghai Azures UWH Club', role: 'Host Club', category: 'host', initials: 'SAU', color: 'from-emerald-500 to-teal-500' },
+  { name: 'Shanghai Sports Federation', role: 'Supervisory Authority', category: 'authority', initials: 'SSF', color: 'from-[#00A9B5] to-[#008B8B]', logo: logoSsf },
+  { name: 'CROS Bretagne', role: 'Supervisory Authority', category: 'authority', initials: 'CROS', color: 'from-[#4FF6FF] to-[#00A9B5]', logo: logoCros },
+  { name: 'Shanghai JiangAn Sports Federation', role: 'Organizer', category: 'organizer', initials: 'SJSF', color: 'from-purple-500 to-indigo-500', logo: logoSjsf },
+  { name: 'FFESSM', role: 'Organizer', category: 'organizer', initials: 'FFE', color: 'from-amber-500 to-orange-500', logo: logoFfessm },
+  { name: 'Shanghai Azures UWH Club', role: 'Host Club', category: 'host', initials: 'SAU', color: 'from-emerald-500 to-teal-500', logo: logoSau },
+  { name: 'Shanghai JingAn Sports Center', role: 'Venue Sponsor', category: 'venue', initials: 'SJSC', color: 'from-rose-500 to-pink-500', logo: logoSjsc },
 ]
 
 const sponsors = [
@@ -65,9 +74,13 @@ export default function OrganizersSection() {
               }`}
               style={{ transitionDelay: `${i * 0.1}s` }}
             >
-              {/* Logo placeholder */}
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${org.color} flex items-center justify-center mx-auto mb-4 shadow-lg`}>
-                <span className="text-white font-bold text-sm">{org.initials}</span>
+              {/* Logo */}
+              <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-4 overflow-hidden`}>
+                <img
+                  src={org.logo}
+                  alt={org.name}
+                  className="w-full h-full object-contain"
+                />
               </div>
 
               <div
@@ -76,6 +89,8 @@ export default function OrganizersSection() {
                     ? 'bg-[#00A9B5]/10 text-[#00A9B5]'
                     : org.category === 'organizer'
                     ? 'bg-purple-500/10 text-purple-400'
+                    : org.category === 'venue'
+                    ? 'bg-rose-500/10 text-rose-400'
                     : 'bg-amber-500/10 text-amber-400'
                 }`}
               >

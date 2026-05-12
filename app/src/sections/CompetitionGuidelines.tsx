@@ -35,7 +35,7 @@ const guidelines: Guideline[] = [
     icon: Shield,
     title: 'Player Eligibility',
     content:
-      'Athletes in the adult division must be at least 15 years old as of October 25, 2026. Youth division athletes must be between 15 and 18 years old. All participants must be registered members of their respective clubs and hold valid underwater hockey competition licenses.',
+      'Athletes in the adult division must be at least 16 years old as of October 25, 2026. Youth division athletes must be between 10 and 14 years old. All participants must be registered members of their respective clubs and hold valid underwater hockey competition licenses.',
   },
 ]
 
