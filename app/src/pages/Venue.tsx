@@ -1,82 +1,197 @@
-import { MapPin, Waves, Utensils, Train, Hotel, Bus, Clock } from 'lucide-react'
+import { useState } from 'react'
+import { MapPin, Waves, Utensils, Train, Hotel, Bus, Clock, ChevronDown, X } from 'lucide-react'
 
 const galleryImages = [
   {
-    src: '/images/venue-center.jpg',
+    src: '/images/the-pool-2.jpg',
     alt: 'Shanghai JingAn Sports Center',
     title: 'Shanghai JingAn Sports Center',
     featured: true,
   },
   {
-    src: '/images/card-pool.jpg',
-    alt: 'Olympic-standard swimming pool',
-    title: 'Olympic Pool',
+    src: '/images/water-quality.jpg',
+    alt: 'Competition-grade Water Quality.',
+    title: 'Competition-grade Water Quality',
     featured: false,
+    featuredVertical: true,
   },
   {
-    src: '/images/card-game.jpg',
+    src: '/images/during-competition-1.jpg',
     alt: 'Underwater hockey competition',
     title: 'Competition Action',
     featured: false,
   },
   {
-    src: '/images/hero-bg.jpg',
-    alt: 'Pool facilities',
-    title: 'Pool Facilities',
+    src: '/images/during-competition-2.jpg',
+    alt: 'Underwater hockey competition',
+    title: 'Competition Action',
     featured: false,
   },
   {
-    src: '/images/card-award.jpg',
-    alt: 'Tournament awards',
-    title: 'Award Ceremony',
+    src: '/images/opening-ceremony.jpg',
+    alt: 'Opening Ceremony',
+    title: 'Opening Ceremony',
+    featured: false,
+  },
+  {
+    src: '/images/final-day.jpg',
+    alt: 'Final Day',
+    title: 'Final Day',
+    featured: false,
+  },
+  {
+    src: '/images/the-pool-3.jpg',
+    alt: 'Preparation day',
+    title: 'Preparation Session',
+    featured: false,
+  },
+  {
+    src: '/images/during-competition-3.jpg',
+    alt: 'Competition Action',
+    title: 'Competition Action',
     featured: false,
   },
 ]
 
 const hotelGalleryImages = [
   {
-    src: '/images/venue-center.jpg',
+    src: '/images/hotel.webp',
     alt: 'Yunfeng Grand Hotel',
     title: 'Yunfeng Grand Hotel',
     featured: true,
   },
   {
-    src: '/images/card-pool.jpg',
-    alt: 'Hotel lobby',
+    src: '/images/hotel-entry.webp',
+    alt: 'Hotel Entry',
+    title: 'Hotel Entry',
+    featured: false,
+  },
+  {
+    src: '/images/hotel-lobby.webp',
+    alt: 'Hotel Lobby',
     title: 'Hotel Lobby',
     featured: false,
   },
   {
-    src: '/images/card-game.jpg',
-    alt: 'Hotel rooms',
-    title: 'Hotel Rooms',
+    src: '/images/hotel-restaurant.webp',
+    alt: 'Hotel Restaurant',
+    title: 'Hotel Restaurant',
     featured: false,
   },
   {
-    src: '/images/hero-bg.jpg',
-    alt: 'Gala dinner',
+    src: '/images/hotel-room.webp',
+    alt: 'Hotel Room',
+    title: 'Hotel Room',
+    featured: false,
+  },
+  {
+    src: '/images/1.jpg',
+    alt: 'Gala Dinner',
     title: 'Gala Dinner',
     featured: false,
   },
   {
-    src: '/images/card-award.jpg',
-    alt: 'Awards ceremony',
-    title: 'Awards Ceremony',
-    featured: false,
-  },
-  {
-    src: '/images/venue-center.jpg',
-    alt: 'Hotel exterior',
-    title: 'Hotel Exterior',
-    featured: false,
-  },
-  {
-    src: '/images/card-pool.jpg',
+    src: '/images/2.jpg',
     alt: 'Gala dinner celebration',
     title: 'Celebration',
     featured: false,
   },
+  {
+    src: '/images/3.jpg',
+    alt: 'Gala Dinner',
+    title: 'Gala Dinner',
+    featured: false,
+  },
 ]
+
+interface GalleryProps {
+  images: typeof galleryImages
+  title: string
+  subtitle: string
+}
+
+function ExpandableGallery({ images, title, subtitle }: GalleryProps) {
+  const [showAll, setShowAll] = useState(false)
+  const [selectedImage, setSelectedImage] = useState<typeof images[0] | null>(null)
+  const displayImages = showAll ? images : images.slice(0, 4)
+
+  return (
+    <>
+      <div className="text-center mb-12">
+        <span className="text-[#00A9B5] text-xs font-medium tracking-[0.15em] uppercase mb-3 block">
+          Gallery
+        </span>
+        <h2 className="text-3xl font-semibold text-white mb-4">
+          {title.split(' ').map((word, i) => (
+            i === title.split(' ').length - 1 ? (
+              <span key={i} className="text-gradient">{word}</span>
+            ) : (
+              <span key={i}>{word} </span>
+            )
+          ))}
+        </h2>
+        <p className="text-white/50 max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      </div>
+
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {displayImages.map((image, index) => (
+          <GalleryImage
+            key={index}
+            image={image}
+            layout="vertical"
+            onClick={() => setSelectedImage(image)}
+          />
+        ))}
+      </div>
+
+      {images.length > 5 && (
+        <div className="text-center mt-8">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#00A9B5]/10 text-[#00A9B5] hover:bg-[#00A9B5]/20 transition-colors font-medium text-sm"
+          >
+            {showAll ? (
+              <>
+                <X className="w-4 h-4" />
+                Show Less
+              </>
+            ) : (
+              <>
+                <ChevronDown className="w-4 h-4" />
+                View More ({images.length - 5} more photos)
+              </>
+            )}
+          </button>
+        </div>
+      )}
+
+      {selectedImage && (
+        <div
+          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button
+            className="absolute top-4 right-4 p-2 text-white/50 hover:text-white transition-colors"
+            onClick={() => setSelectedImage(null)}
+          >
+            <X className="w-8 h-8" />
+          </button>
+          <div className="max-w-5xl max-h-[80vh]">
+            <img
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+              className="max-w-full max-h-[80vh] object-contain rounded-xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+            <p className="text-white text-center mt-4">{selectedImage.title}</p>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
 
 interface GalleryImageProps {
   image: {
@@ -84,12 +199,14 @@ interface GalleryImageProps {
     alt: string
     title: string
     featured: boolean
+    featuredVertical?: boolean
   }
   layout?: 'horizontal' | 'vertical'
+  onClick?: () => void
 }
 
-function GalleryImage({ image, layout = 'horizontal' }: GalleryImageProps) {
-  const { src, alt, title, featured } = image
+function GalleryImage({ image, layout = 'horizontal', onClick }: GalleryImageProps) {
+  const { src, alt, title, featured, featuredVertical } = image
 
   const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
     const target = e.target as HTMLImageElement
@@ -107,9 +224,12 @@ function GalleryImage({ image, layout = 'horizontal' }: GalleryImageProps) {
           ? layout === 'vertical'
             ? 'col-span-2 md:col-span-3 lg:col-span-2 row-span-2 h-64 md:h-80 lg:h-96'
             : 'row-span-2 h-full'
-          : 'h-40 md:h-48'
+          : featuredVertical
+            ? 'row-span-2 h-80 md:h-96'
+            : 'h-40 md:h-48'
         }
       `}
+      onClick={onClick}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-[#00A9B5]/20 to-transparent" />
       <img
@@ -161,19 +281,19 @@ const attractions = [
   {
     name: 'The Bund',
     desc: 'Historic waterfront with spectacular skyline views',
-    distance: '2.5 km',
+    distance: '2.5 km from hotel',
     travelTime: '15 min by Metro (Line 2)',
   },
   {
     name: 'Yu Garden',
     desc: 'Traditional Chinese garden from the Ming Dynasty',
-    distance: '3.8 km',
+    distance: '3.8 km from hotel',
     travelTime: '20 min by Metro (Line 10)',
   },
   {
     name: 'Shanghai Tower',
     desc: "China's tallest building with breathtaking views",
-    distance: '4.2 km',
+    distance: '4.2 km from hotel',
     travelTime: '25 min by Metro (Line 2)',
   },
 ]
@@ -182,14 +302,14 @@ export default function Venue() {
   return (
     <main className="pt-16">
       {/* Hero */}
-      <section className="relative py-20 lg:py-28 overflow-hidden">
+      <section className="relative py-20 lg:py-28 overflow-hidden min-h-[60vh]">
         <div className="absolute inset-0">
           <img
-            src="/images/venue-center.jpg"
+            src="/images/the-pool-1.jpg"
             alt="Shanghai JingAn Sports Center"
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-70"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#001B2F] via-[#001B2F]/95 to-[#001B2F]" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#001B2F] via-[#001B2F]/50 to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <span className="text-[#00A9B5] text-xs font-medium tracking-[0.15em] uppercase mb-3 block">
@@ -215,10 +335,7 @@ export default function Venue() {
                 World-Class <span className="text-gradient">Facilities</span>
               </h2>
               <p className="text-white/50 leading-relaxed mb-8">
-                The 2026 Underwater Hockey Shanghai Tournament will be held at
-                the state-of-the-art Shanghai JingAn Sports Center, featuring
-                Olympic-standard pools and facilities designed to provide the
-                optimal playing environment.
+                The 2026 Underwater Hockey Shanghai Tournament will be held at Shanghai JingAn Sports Center. The venue features Olympic-standard pools with a world-class water renewal system, ensuring championship-level water quality and an optimal playing environment.
               </p>
               <div className="space-y-4">
                 {poolFeatures.map((f) => {
@@ -244,7 +361,7 @@ export default function Venue() {
             </div>
             <div className="rounded-2xl overflow-hidden h-96">
               <img
-                src="/images/venue-center.jpg"
+                src="/images/the-pool-1.jpg"
                 alt="Sports Center"
                 className="w-full h-full object-cover"
               />
@@ -256,23 +373,11 @@ export default function Venue() {
       {/* Photo Gallery */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <span className="text-[#00A9B5] text-xs font-medium tracking-[0.15em] uppercase mb-3 block">
-              Gallery
-            </span>
-            <h2 className="text-3xl font-semibold text-white mb-4">
-              Venue & <span className="text-gradient">Competition</span>
-            </h2>
-            <p className="text-white/50 max-w-2xl mx-auto">
-              Take a closer look at our world-class facilities and moments from previous tournaments.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {galleryImages.map((image, index) => (
-              <GalleryImage key={index} image={image} layout="vertical" />
-            ))}
-          </div>
+          <ExpandableGallery
+            images={galleryImages}
+            title="Venue & Competition"
+            subtitle="Take a closer look at our world-class facilities and moments from previous tournaments."
+          />
         </div>
       </section>
 
@@ -432,25 +537,13 @@ export default function Venue() {
       </section>
 
       {/* Hotel & Gala Photo Gallery */}
-      <section className="py-16">
+      <section className="py-16 bg-[#001B2F]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-12">
-            <span className="text-[#00A9B5] text-xs font-medium tracking-[0.15em] uppercase mb-3 block">
-              Gallery
-            </span>
-            <h2 className="text-3xl font-semibold text-white mb-4">
-              Hotel & <span className="text-gradient">Gala Dinner</span>
-            </h2>
-            <p className="text-white/50 max-w-2xl mx-auto">
-              Explore our partner hotel facilities and memorable moments from last year's gala dinner.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-4 gap-4 h-48">
-            {hotelGalleryImages.map((image, index) => (
-              <GalleryImage key={index} image={image} layout="horizontal" />
-            ))}
-          </div>
+          <ExpandableGallery
+            images={hotelGalleryImages}
+            title="Hotel & Gala Dinner"
+            subtitle="Explore our partner hotel facilities and memorable moments from last year's gala dinner."
+          />
         </div>
       </section>
     </main>

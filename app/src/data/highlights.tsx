@@ -51,9 +51,9 @@ export const highlights: HighlightCard[] = [
   {
     id: 4,
     title: 'Youth Division Added for 2026',
-    shortDescription: 'We are excited to announce a new youth division (ages 15-18) for the 2026 tournament, expanding opportunities for young athletes.',
-    fullDescription: 'We are excited to announce a new youth division (ages 15-18) for the 2026 tournament, expanding opportunities for young athletes. This division will feature its own dedicated matches and awards.',
-    image: '/images/card-game.jpg',
+    shortDescription: 'We are excited to announce a new youth division (ages 10-14) for the 2026 tournament, expanding opportunities for young athletes.',
+    fullDescription: 'We are excited to announce a new youth division (ages 10-14) for the 2026 tournament, expanding opportunities for young athletes. This division will feature its own dedicated matches and awards.',
+    image: '/images/youth-division.jpg',
     category: 'news',
     date: 'Mar 2026',
     size: 'medium',

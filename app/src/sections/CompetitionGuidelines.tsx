@@ -14,7 +14,7 @@ const guidelines: Guideline[] = [
     icon: Users,
     title: 'Competition Format',
     content:
-      'The tournament follows a 6 v 6 format. Teams are formed by clubs, divided into men\'s and women\'s teams to compete in the corresponding categories. If clubs do not have enough players, they may form joint teams with other clubs. A new Youth Division (ages 15-18) has been added for the 2026 tournament.',
+      'The tournament follows a 6 v 6 format. Teams are formed by clubs, divided into men\'s and women\'s teams to compete in the corresponding categories. If clubs do not have enough players, they may form joint teams with other clubs. A new Youth Division (ages 10-14) has been added for the 2026 tournament.',
   },
   {
     id: 'awards',
