@@ -1,19 +1,78 @@
-# React + TypeScript + Vite
+# 上海水下曲棍球国际锦标赛
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2026 上海水下曲棍球国际锦标赛官方网站 - 现代化的 React 单页应用。
 
-Currently, two official plugins are available:
+## 技术栈
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **框架**: React 19 + TypeScript
+- **构建工具**: Vite 7.2.4
+- **样式**: Tailwind CSS 3.4.19 + shadcn/ui
+- **路由**: React Router v6
+- **动画**: Framer Motion + Lenis + Three.js (@react-three/fiber)
 
-## React Compiler
+## 快速开始
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+# 安装依赖
+npm install
 
-## Expanding the ESLint configuration
+# 开发模式
+npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# 构建生产版本
+npm run build
+
+# 预览生产版本
+npm run preview
+```
+
+## 项目结构
+
+```
+src/
+├── components/         # UI 组件
+│   ├── ui/            # shadcn/ui 组件
+│   ├── Footer.tsx     # 页脚组件
+│   └── Navbar.tsx     # 导航栏组件
+├── sections/          # 页面区块
+│   ├── HeroSection.tsx
+│   ├── LatestHighlights.tsx
+│   ├── TournamentDetails.tsx
+│   ├── CompetitionGuidelines.tsx
+│   └── OrganizersSection.tsx
+├── pages/             # 页面组件
+├── hooks/             # 自定义 Hooks
+├── lib/               # 工具函数
+├── data/              # 数据文件
+├── App.tsx            # 根组件
+├── App.css            # 应用样式
+├── index.css          # 全局样式
+└── main.tsx           # 入口文件
+```
+
+## 可用组件
+
+shadcn/ui 组件 (40+):
+- accordion, alert-dialog, alert, aspect-ratio, avatar, badge
+- breadcrumb, button-group, button, calendar, card, carousel
+- chart, checkbox, collapsible, command, context-menu, dialog
+- drawer, dropdown-menu, empty, field, form, hover-card
+- input-group, input-otp, input, item, kbd, label
+- menubar, navigation-menu, pagination, popover, progress
+- radio-group, resizable, scroll-area, select, separator
+- sheet, sidebar, skeleton, slider, sonner, spinner
+- switch, table, tabs, textarea, toggle-group, toggle, tooltip
+
+### 使用示例
+
+```tsx
+import { Button } from '@/components/ui/button'
+import { Card, CardHeader, CardTitle } from '@/components/ui/card'
+```
+
+## ESLint 配置扩展
+
+对于生产应用，建议启用类型感知的 lint 规则：
 
 ```js
 export default defineConfig([
@@ -21,32 +80,23 @@ export default defineConfig([
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
       tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
+      // tseslint.configs.strictTypeChecked,
+      // tseslint.configs.stylisticTypeChecked,
     ],
     languageOptions: {
       parserOptions: {
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
       },
-      // other options...
     },
   },
 ])
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+也可以安装 React 特定的 lint 插件：
 
 ```js
-// eslint.config.js
 import reactX from 'eslint-plugin-react-x'
 import reactDom from 'eslint-plugin-react-dom'
 
@@ -55,10 +105,7 @@ export default defineConfig([
   {
     files: ['**/*.{ts,tsx}'],
     extends: [
-      // Other configs...
-      // Enable lint rules for React
       reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
       reactDom.configs.recommended,
     ],
     languageOptions: {
@@ -66,8 +113,13 @@ export default defineConfig([
         project: ['./tsconfig.node.json', './tsconfig.app.json'],
         tsconfigRootDir: import.meta.dirname,
       },
-      // other options...
     },
   },
 ])
 ```
+
+## 文档
+
+- [技术架构](./docs/architecture.md) - 详细技术设计和架构决策
+- [变更日志](./docs/changelog.md) - 版本变更记录
+- [项目路线图](./docs/roadmap.md) - 功能规划
