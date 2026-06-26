@@ -11,48 +11,107 @@ import {
 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import type { LucideIcon } from 'lucide-react'
 
-const plans = [
+interface Price {
+  cny: string
+  eur: string
+}
+
+type Division =
+  | {
+      name: string
+      subtitle: string
+      early: Price
+      normal: Price
+    }
+  | {
+      name: string
+      subtitle: string
+      price: Price
+    }
+
+interface Feature {
+  icon: LucideIcon
+  text: string
+}
+
+interface Plan {
+  name: string
+  color: string
+  borderColor: string
+  popular?: boolean
+  earlyDeadline?: string
+  normalDeadline?: string
+  deadline?: string
+  divisions: Division[]
+  features: Feature[]
+}
+
+const plans: Plan[] = [
   {
-    name: 'Basic Plan',
-    priceEarly: { cny: 'TBC', eur: 'TBC' },
-    priceNormal: { cny: 'TBC', eur: 'TBC' },
-    earlyDeadline: 'July 31, 2026',
-    normalDeadline: 'September 15, 2026',
+    name: 'Standard Package',
+    earlyDeadline: 'August 15, 2026',
+    normalDeadline: 'September 25, 2026',
     color: 'from-[#00A9B5]/20 to-[#00A9B5]/5',
     borderColor: 'border-[#00A9B5]/30',
+    divisions: [
+      {
+        name: 'Adult Division',
+        subtitle: '16+ years old',
+        early: { cny: '980', eur: '123' },
+        normal: { cny: '1280', eur: '160' },
+      },
+      {
+        name: 'U16 Division',
+        subtitle: '10–15 years old',
+        early: { cny: '780', eur: '98' },
+        normal: { cny: '980', eur: '123' },
+      },
+    ],
     features: [
       { icon: Check, text: "1 person's registration fee" },
-      { icon: Shirt, text: '1 event T-shirt' },
-      { icon: UtensilsCrossed, text: 'Lunches on October 23-25, 2026' },
+      { icon: Shirt, text: '1 custom commemorative T-shirt' },
+      { icon: UtensilsCrossed, text: 'Daily lunch (Oct 23–25, 2026)' },
     ],
   },
   {
-    name: 'Combo Plan',
-    price: { cny: 'TBC', eur: 'TBC' },
-    deadline: 'July 31, 2026',
+    name: 'All-Inclusive Package',
+    deadline: 'August 15, 2026',
     color: 'from-[#4FF6FF]/20 to-[#4FF6FF]/5',
     borderColor: 'border-[#4FF6FF]/30',
     popular: true,
+    divisions: [
+      {
+        name: 'Adult Division',
+        subtitle: '16+ years old',
+        price: { cny: '1800', eur: '225' },
+      },
+      {
+        name: 'U16 Division',
+        subtitle: '10–15 years old',
+        price: { cny: '1630', eur: '203' },
+      },
+    ],
     features: [
       { icon: Check, text: "1 person's registration fee" },
-      { icon: Shirt, text: '1 event T-shirt' },
-      { icon: Hotel, text: 'Accommodation (twin room) & breakfast for 3 nights' },
-      { icon: Bus, text: 'Round-trip bus between hotel and venue' },
-      { icon: UtensilsCrossed, text: 'Post-event banquet' },
-      { icon: UtensilsCrossed, text: 'Lunches on October 23-25, 2026' },
+      { icon: Shirt, text: '1 custom commemorative T-shirt' },
+      { icon: Hotel, text: '3 nights accommodation (Oct 22–24) with breakfast, twin room' },
+      { icon: Bus, text: 'Shuttle bus between hotel and venue (Oct 23–25)' },
+      { icon: UtensilsCrossed, text: 'Post-tournament gala dinner' },
+      { icon: UtensilsCrossed, text: 'Daily lunch (Oct 23–25, 2026)' },
     ],
   },
 ]
 
 const addOns = [
   {
-    name: 'Accommodation + Bus + Breakfast',
-    price: 'TBC',
+    name: 'Accommodation + Shuttle + Breakfast',
+    price: 'CNY 280 / €35 per day',
   },
   {
-    name: 'Post-event banquet',
-    price: 'TBC',
+    name: 'Gala Dinner Ticket',
+    price: 'CNY 230 / €29',
   },
 ]
 
@@ -134,38 +193,69 @@ export default function RegistrationContact() {
                   {plan.name}
                 </h3>
 
-                {'priceEarly' in plan ? (
-                  <div className="space-y-3 mb-6">
-                    <div className="p-4 rounded-xl bg-[#001B2F]/50">
-                      <p className="text-white/50 text-sm mb-1">
-                        Early bird price (until {plan.earlyDeadline})
-                      </p>
-                      <p className="text-white font-bold text-2xl">
-                        CNY {(plan.priceEarly as { cny: string }).cny} / €{' '}
-                        {(plan.priceEarly as { eur: string }).eur}
-                      </p>
+                <div className="space-y-3 mb-6">
+                  {plan.divisions.map((div) => (
+                    <div
+                      key={div.name}
+                      className="p-4 rounded-xl bg-[#001B2F]/50 border border-white/5"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="text-white font-semibold text-sm">
+                          {div.name}
+                        </p>
+                        <span className="text-[#00A9B5] text-xs font-medium">
+                          {div.subtitle}
+                        </span>
+                      </div>
+                      {'early' in div ? (
+                        <div className="space-y-2">
+                          <div className="flex items-baseline justify-between">
+                            <span className="text-white/50 text-xs">
+                              Early Bird
+                              <span className="text-white/30 ml-1">
+                                (until {plan.earlyDeadline})
+                              </span>
+                            </span>
+                            <span className="text-white font-bold">
+                              CNY {div.early.cny}
+                              <span className="text-white/50 text-sm ml-1">
+                                / €{div.early.eur}
+                              </span>
+                            </span>
+                          </div>
+                          <div className="flex items-baseline justify-between">
+                            <span className="text-white/50 text-xs">
+                              Regular
+                              <span className="text-white/30 ml-1">
+                                (until {plan.normalDeadline})
+                              </span>
+                            </span>
+                            <span className="text-white/70 font-medium">
+                              CNY {div.normal.cny}
+                              <span className="text-white/40 text-sm ml-1">
+                                / €{div.normal.eur}
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="flex items-baseline justify-between">
+                          <span className="text-white/50 text-xs">
+                            <span className="text-white/30 ml-1">
+                              until {plan.deadline}
+                            </span>
+                          </span>
+                          <span className="text-white font-bold">
+                            CNY {div.price.cny}
+                            <span className="text-white/50 text-sm ml-1">
+                              / €{div.price.eur}
+                            </span>
+                          </span>
+                        </div>
+                      )}
                     </div>
-                    <div className="p-4 rounded-xl bg-[#001B2F]/30">
-                      <p className="text-white/50 text-sm mb-1">
-                        Normal price (until {plan.normalDeadline})
-                      </p>
-                      <p className="text-white font-bold text-2xl">
-                        CNY {(plan.priceNormal as { cny: string }).cny} / €{' '}
-                        {(plan.priceNormal as { eur: string }).eur}
-                      </p>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="p-4 rounded-xl bg-[#001B2F]/50 mb-6">
-                    <p className="text-white/50 text-sm mb-1">
-                      Price (until {plan.deadline})
-                    </p>
-                    <p className="text-white font-bold text-2xl">
-                      CNY {(plan.price as { cny: string }).cny} / €{' '}
-                      {(plan.price as { eur: string }).eur}
-                    </p>
-                  </div>
-                )}
+                  ))}
+                </div>
 
                 <ul className="space-y-3">
                   {plan.features.map((f) => {
