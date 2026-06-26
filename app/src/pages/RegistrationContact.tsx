@@ -1,9 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import {
-  Mail,
-  MapPin,
-  Clock,
   Send,
   Check,
   Shirt,
@@ -11,6 +7,7 @@ import {
   Bus,
   UtensilsCrossed,
   Plus,
+  FileDown,
 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -70,7 +67,17 @@ export default function RegistrationContact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+
+    const { name, email, subject, message } = formData
+    const mailBody = `Name: ${name}\nEmail: ${email}\n\n${message}`
+    const mailtoLink = `mailto:shanghaiazuresuwh@163.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(mailBody)}`
+
+    window.location.href = mailtoLink
+
     setSubmitted(true)
+    setFormData({ name: '', email: '', subject: '', message: '' })
     setTimeout(() => setSubmitted(false), 3000)
   }
 
@@ -205,87 +212,53 @@ export default function RegistrationContact() {
       <section className="py-16 section-sand">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Contact Info */}
+            {/* Registration Info */}
             <div>
               <h2 className="text-3xl font-semibold text-[#001B2F] mb-6">
-                Get in <span className="text-[#00A9B5]">Touch</span>
+                How to <span className="text-[#00A9B5]">Register</span>
               </h2>
-              <p className="text-[#001B2F]/60 mb-8">
-                We are here to answer any questions about the 2026 Underwater
-                Hockey Shanghai Tournament. Reach out through any of the
-                following methods.
-              </p>
+              <ol className="list-decimal list-inside space-y-4 text-[#001B2F]/70 mb-8">
+                <li>
+                  <strong className="text-[#001B2F]">Book</strong> by email or
+                  speak with our coordinator.
+                </li>
+                <li>
+                  <strong className="text-[#001B2F]">Download the PDF</strong>{' '}
+                  for full details — how to book, who to contact, and
+                  competition info.
+                </li>
+                <li>
+                  <strong className="text-[#001B2F]">Early pool access?</strong>{' '}
+                  Contact our Pool Coordinator (QR on page 1).
+                </li>
+                <li>
+                  <strong className="text-[#001B2F]">Questions?</strong> Message
+                  our Registration Coordinator on Instagram (QR at the end).
+                </li>
+              </ol>
 
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#00A9B5]/10 flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-[#00A9B5]" />
-                  </div>
-                  <div>
-                    <p className="text-[#001B2F] font-semibold mb-1">Email</p>
-                    <a
-                      href="mailto:shanghaiazuresuwh@163.com"
-                      className="text-[#001B2F]/60 hover:text-[#00A9B5] transition-colors"
-                    >
-                      shanghaiazuresuwh@163.com
-                    </a>
-                  </div>
-                </div>
+              <a
+                href="/assets/Invitation%20Letter%20and%20Booking%20Policy.pdf"
+                download
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-[#00A9B5] to-[#008B8B] text-white font-medium hover:shadow-lg hover:shadow-[#00A9B5]/20 transition-all duration-300"
+              >
+                <FileDown className="w-4 h-4" />
+                Download PDF
+              </a>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#00A9B5]/10 flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-[#00A9B5]" />
-                  </div>
-                  <div>
-                    <p className="text-[#001B2F] font-semibold mb-1">
-                      Tournament Office
-                    </p>
-                    <p className="text-[#001B2F]/60 text-sm">
-                      Shanghai JingAn Sports Federation
-                      <br />
-                      728 Changping Road
-                      <br />
-                      JingAn Area, Shanghai, China
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-[#00A9B5]/10 flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-[#00A9B5]" />
-                  </div>
-                  <div>
-                    <p className="text-[#001B2F] font-semibold mb-1">
-                      Response Time
-                    </p>
-                    <p className="text-[#001B2F]/60 text-sm">
-                      We aim to respond to all inquiries within 48 hours during
-                      business days.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* FAQ */}
-              <div className="mt-12 p-6 rounded-2xl bg-[#001B2F]/5 border border-[#001B2F]/10">
-                <h3 className="text-[#001B2F] font-semibold mb-2">
-                  Frequently Asked Questions
-                </h3>
-                <p className="text-[#001B2F]/60 text-sm mb-4">
-                  Can&apos;t find the answer you&apos;re looking for? Check our
-                  comprehensive rules page for more information.
-                </p>
-                <Link
-                  to="/"
-                  className="inline-flex items-center gap-1 text-[#00A9B5] text-sm font-medium hover:underline"
+              <p className="mt-6 text-sm text-[#001B2F]/60">
+                If you send us a message, it will also land in our email:{" "}
+                <a
+                  href="mailto:shanghaiazuresuwh@163.com"
+                  className="font-medium text-[#00A9B5] hover:underline"
                 >
-                  View Tournament Rules
-                </Link>
-              </div>
+                  shanghaiazuresuwh@163.com
+                </a>
+              </p>
             </div>
 
             {/* Contact Form */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl shadow-[#001B2F]/5">
+            <div className="bg-white rounded-2xl p-8 shadow-xl shadow-[#001B2F]/5 text-[#001B2F]">
               <h3 className="text-[#001B2F] font-semibold text-xl mb-6">
                 Send Us a Message
               </h3>
