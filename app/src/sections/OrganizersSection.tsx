@@ -1,12 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 
-import logoSsf from '../images/logo-shanghai-sports-federation.jpg'
-import logoCros from '../images/logo-cros-bretagne.jpg'
-import logoSjsf from '../images/logo-shanghai-jiang-an-sports-federation.png'
-import logoFfessm from '../images/logo-ffessm.png'
-import logoSau from '../images/logo-shanghai-azures-uwh-club.png'
-import logoSjsc from '../images/logo-shanghai-jing-an-sports-center.png'
-
 interface Organizer {
   name: string
   role: string
@@ -17,12 +10,12 @@ interface Organizer {
 }
 
 const organizers: Organizer[] = [
-  { name: 'Shanghai Sports Federation', role: 'Supervisory Authority', category: 'authority', initials: 'SSF', color: 'from-[#00A9B5] to-[#008B8B]', logo: logoSsf },
-  { name: 'CROS Bretagne', role: 'Supervisory Authority', category: 'authority', initials: 'CROS', color: 'from-[#4FF6FF] to-[#00A9B5]', logo: logoCros },
-  { name: 'Shanghai JiangAn Sports Federation', role: 'Organizer', category: 'organizer', initials: 'SJSF', color: 'from-purple-500 to-indigo-500', logo: logoSjsf },
-  { name: 'FFESSM', role: 'Organizer', category: 'organizer', initials: 'FFE', color: 'from-amber-500 to-orange-500', logo: logoFfessm },
-  { name: 'Shanghai Azures UWH Club', role: 'Host Club', category: 'host', initials: 'SAU', color: 'from-emerald-500 to-teal-500', logo: logoSau },
-  { name: 'Shanghai JingAn Sports Center', role: 'Venue Sponsor', category: 'venue', initials: 'SJSC', color: 'from-rose-500 to-pink-500', logo: logoSjsc },
+  { name: 'Shanghai Sports Federation', role: 'Supervisory Authority', category: 'authority', initials: 'SSF', color: 'from-[#00A9B5] to-[#008B8B]', logo: '/images/logos/logo-shanghai-sports-federation.jpg' },
+  { name: 'CROS Bretagne', role: 'Supervisory Authority', category: 'authority', initials: 'CROS', color: 'from-[#4FF6FF] to-[#00A9B5]', logo: '/images/logos/logo-cros-bretagne.jpg' },
+  { name: 'Shanghai JiangAn Sports Federation', role: 'Organizer', category: 'organizer', initials: 'SJSF', color: 'from-purple-500 to-indigo-500', logo: '/images/logos/logo-shanghai-jiang-an-sports-federation.png' },
+  { name: 'FFESSM', role: 'Organizer', category: 'organizer', initials: 'FFE', color: 'from-amber-500 to-orange-500', logo: '/images/logos/logo-ffessm.png' },
+  { name: 'Shanghai Azures UWH Club', role: 'Host Club', category: 'host', initials: 'SAU', color: 'from-emerald-500 to-teal-500', logo: '/images/logos/logo-shanghai-azures-uwh-club.png' },
+  { name: 'Shanghai JingAn Sports Center', role: 'Venue Sponsor', category: 'venue', initials: 'SJSC', color: 'from-rose-500 to-pink-500', logo: '/images/logos/logo-shanghai-jing-an-sports-center.png' },
 ]
 
 const sponsors = [
@@ -114,13 +107,13 @@ export default function OrganizersSection() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-[#00A9B5]/10 to-transparent border border-[#00A9B5]/20">
               <p className="text-[#00A9B5] font-semibold text-2xl mb-1">
-                July 31
+                August 15
               </p>
               <p className="text-white/60 text-sm">Early Bird Deadline</p>
             </div>
             <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-[#00A9B5]/10 to-transparent border border-[#00A9B5]/20">
               <p className="text-[#00A9B5] font-semibold text-2xl mb-1">
-                Sep 15
+                September 25
               </p>
               <p className="text-white/60 text-sm">Registration Deadline</p>
             </div>
