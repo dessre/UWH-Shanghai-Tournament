@@ -391,7 +391,7 @@ export default function Venue() {
               </div>
               <div>
                 <h2 className="text-2xl font-semibold text-[#001B2F]">
-                  Pre-Tournament Pool <span className="text-[#00A9B5]">Sessions</span>
+                  Venue Early Access <span className="text-[#00A9B5]">Details</span>
                 </h2>
                 <p className="text-[#001B2F]/50 text-sm">
                   Warm-up training schedule for registered teams
@@ -399,15 +399,44 @@ export default function Venue() {
               </div>
             </div>
 
-            <div className="flex items-center justify-center py-12 rounded-xl bg-[#001B2F]/5 border border-dashed border-[#001B2F]/10">
-              <div className="text-center">
-                <Clock className="w-12 h-12 text-[#00A9B5]/30 mx-auto mb-3" />
-                <p className="text-[#001B2F] font-semibold text-lg">
-                  Awaiting Updates
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              <div className="space-y-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-[#001B2F] mb-2">Opening Dates</h3>
+                  <p className="text-[#001B2F]/70">
+                    Wednesday, October 21st & Thursday, October 22nd, 2026
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-[#001B2F] mb-2">Daily Training Sessions</h3>
+                  <ul className="space-y-2 text-[#001B2F]/70">
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#00A9B5]" />
+                      Morning: 09:00 - 11:00
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#00A9B5]" />
+                      Afternoon: 14:00 - 16:00
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <span className="w-2 h-2 rounded-full bg-[#00A9B5]" />
+                      Evening: 18:00 - 20:00
+                    </li>
+                  </ul>
+                </div>
+                <p className="text-[#001B2F]/50 text-sm">
+                  Advanced booking is recommended to secure your slot.
                 </p>
-                <p className="text-[#001B2F]/40 text-sm mt-1 max-w-md">
-                  Specific warm-up training session times and dates will be
-                  published here as the tournament approaches. Stay tuned!
+              </div>
+
+              <div className="flex flex-col items-center justify-center p-6 rounded-xl bg-[#001B2F]/5 border border-dashed border-[#001B2F]/10">
+                <img
+                  src="/images/QR_KANA.png"
+                  alt="QR code for venue early access registration"
+                  className="w-40 h-40 rounded-lg"
+                />
+                <p className="text-[#001B2F]/60 text-sm mt-4 text-center">
+                  Scan to register or learn more
                 </p>
               </div>
             </div>

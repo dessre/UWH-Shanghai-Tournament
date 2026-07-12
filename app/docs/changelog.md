@@ -25,7 +25,24 @@
 - `Fixed` 对 bug 的修复。
 - `Security` 对安全性的改进。
 
-## \[x.0.0] - 2026-xx-xx
+## \[2.0.0] - 2026-06-28
+
+### 新增 Added
+
+- 同时有 \`package-lock.json\` 和 \`pnpm-lock.yaml\`, 统一包管理文件, 删除了pnpm-lock.yaml
+- 统一图片位置（src/images → public）
+- 修改 `vercel.json` 配置文件，添加 SPA 路由重写规则以支持 BrowserRouter 部署
+- 首页 `LatestHighlights` 卡片链接改用 React Router `<Link>` 组件
+
+### 改进 Changed
+
+- 路由模式由 `HashRouter` 切换为 `BrowserRouter`，优化 URL 结构与 SEO 表现
+- Vite 配置 `base` 由 `./` 更新为 `/`，适配 BrowserRouter 与根域部署
+
+### 删除 Removed
+
+- 删除未使用的 `src/App.css` 默认样式文件
+- 删除未使用的shadcn 组件
 
 <br />
 
@@ -58,6 +75,4 @@
 - 更新 HeroSection 全屏视频首屏
 - 更新 TournamentDetails 赛事概览非对称网格
 - 更新 CompetitionGuidelines 手风琴折叠面板
-
-<br />
 

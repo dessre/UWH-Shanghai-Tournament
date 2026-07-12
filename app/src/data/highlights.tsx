@@ -9,6 +9,7 @@ export interface HighlightCard {
   category: 'merchandise' | 'training' | 'events' | 'news'
   date: string
   size: 'large' | 'medium' | 'small'
+  pinned?: boolean
 }
 
 export const highlights: HighlightCard[] = [
@@ -20,33 +21,63 @@ export const highlights: HighlightCard[] = [
     image: '/images/card-merch.jpg',
     category: 'merchandise',
     date: 'Apr 2026',
-    size: 'large',
+    size: 'small',
   },
   {
     id: 2,
-    title: 'Pre-Tournament Pool Sessions',
-    shortDescription: 'Open warm-up training at Shanghai JingAn Sports Center pool every weekend in September. Free for all registered teams.',
+    title: 'Venue Early Access Details',
+    shortDescription: 'Wednesday, October 21st & Thursday, October 22nd, 2026. Daily training sessions: Morning 09:00-11:00, Afternoon 14:00-16:00, Evening 18:00-20:00.',
     fullDescription: (
       <>
-        Open warm-up training at Shanghai JingAn Sports Center pool every weekend in September. Free for all registered teams. Sessions are available on Saturdays and Sundays from 9:00 AM to 5:00 PM. Advanced booking is recommended to secure your slot. Please visit the{' '}
-        <Link to="/venue#pool-sessions" className="text-[#4FF6FF] hover:underline">venue page</Link>{' '}
-        for more details.
+        <h3 className="text-xl font-semibold text-white mb-3">Venue Early Access Details</h3>
+        <p className="text-white/80 mb-4">
+          Get ready for the tournament with exclusive early access to the venue. Open warm-up training at the pool for all registered teams.
+        </p>
+        <div className="mb-4">
+          <p className="text-white font-medium mb-1">Opening Dates</p>
+          <p className="text-white/80">Wednesday, October 21st & Thursday, October 22nd, 2026</p>
+        </div>
+        <div className="mb-4">
+          <p className="text-white font-medium mb-1">Daily Training Sessions</p>
+          <ul className="list-disc pl-5 text-white/80 space-y-1">
+            <li>Morning: 09:00 - 11:00</li>
+            <li>Afternoon: 14:00 - 16:00</li>
+            <li>Evening: 18:00 - 20:00</li>
+          </ul>
+        </div>
+        <p className="text-white/80">
+          Advanced booking is recommended to secure your slot. Please visit the{' '}
+          <Link to="/venue#pool-sessions" className="text-[#4FF6FF] hover:underline">venue page</Link>{' '}
+          for more details.
+        </p>
       </>
     ),
-    image: '/images/card-pool.jpg',
+    image: '/images/the-pool-2.jpg',
     category: 'training',
-    date: 'Sep 2026',
+    date: 'Oct 21-22, 2026',
     size: 'medium',
+    pinned: true,
   },
   {
     id: 3,
-    title: 'Shanghai Night Tour for Athletes',
-    shortDescription: 'A special guided evening tour of The Bund and Lujiazui skyline exclusively for tournament participants and their families.',
-    fullDescription: 'A special guided evening tour of The Bund and Lujiazui skyline exclusively for tournament participants and their families. Experience Shanghai\'s breathtaking night views and vibrant atmosphere.',
+    title: 'Welcome Orientation CityWalk - Free for All',
+    shortDescription: 'Explore Shanghai while meeting others.',
+    fullDescription: (
+      <>
+        Welcome walk | Central Shanghai, Early Evening. Open to all participants: athletes, referees, and tournament staff. Route covers the hotel district and nearby riverfront. Explore Shanghai at its liveliest while meeting the faces behind the tournament - a relaxed way to connect before game day.{' '}
+        <Link to="/visit-shanghai#citywalk" className="text-[#4FF6FF] hover:underline">Learn more</Link>
+        <img
+          src="/images/QR_KM.png"
+          alt="QR code for Welcome Orientation CityWalk registration"
+          className="mt-6 w-40 h-40 rounded-lg"
+        />
+      </>
+    ),
     image: '/images/card-shanghai.jpg',
     category: 'events',
-    date: 'Oct 2026',
-    size: 'medium',
+    date: 'Oct 21-22, 2026',
+    size: 'large',
+    pinned: true,
   },
   {
     id: 4,
@@ -56,22 +87,27 @@ export const highlights: HighlightCard[] = [
     image: '/images/youth-division.jpg',
     category: 'news',
     date: 'Mar 2026',
-    size: 'medium',
+    size: 'small',
   },
   {
     id: 5,
-    title: 'Welcome Orientation CityWalk',
-    shortDescription: 'Explore Shanghai while meeting others.',
+    title: 'Custom Shanghai CityWalk & Travel',
+    shortDescription: 'Looking for customized Shanghai citywalk routes or travel plans? We design personalized walking tours just for you.',
     fullDescription: (
       <>
-        Welcome walk | Central Shanghai, Early Evening. Open to all participants: athletes, referees, and tournament staff. Route covers the hotel district and nearby riverfront. Explore Shanghai at its liveliest while meeting the faces behind the tournament - a relaxed way to connect before game day.{' '}
-        <Link to="/visit-shanghai#citywalk" className="text-[#4FF6FF] hover:underline">Learn more</Link>
+        Want to explore more of Shanghai beyond the tournament? We offer customized citywalk routes and travel recommendations tailored to your interests—historic lanes, modern architecture, local food, hidden neighborhoods, and more. Scan the QR code to contact our team and plan your personalized Shanghai experience.
+        <img
+          src="/images/QR_KM.png"
+          alt="QR code to contact us for customized Shanghai citywalk routes"
+          className="mt-6 w-40 h-40 rounded-lg"
+        />
       </>
     ),
     image: '/images/shanghai-flower.jpg',
     category: 'events',
-    date: 'Aug 24, 2026',
-    size: 'medium',
+    date: 'Oct, 2026',
+    size: 'small',
+    pinned: true,
   },
   {
     id: 6,
@@ -91,7 +127,7 @@ export const highlights: HighlightCard[] = [
     image: '/images/card-nightlife.jpg',
     category: 'news',
     date: 'Apr 2026',
-    size: 'medium',
+    size: 'small',
   },
 
 ]

@@ -32,6 +32,8 @@ export default function LatestHighlights() {
     const currentYear = now.getFullYear()
 
     const highlightsByDate = highlights.filter((h) => {
+      if (h.pinned) return true
+
       const cardDate = parseDate(h.date)
       const cardMonth = cardDate.getMonth()
       const cardYear = cardDate.getFullYear()

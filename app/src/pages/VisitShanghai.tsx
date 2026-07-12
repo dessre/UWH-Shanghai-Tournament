@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import {
   MapPin,
   Train,
@@ -108,6 +109,7 @@ const tips = [
 export default function VisitShanghai() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
+  const location = useLocation()
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -122,6 +124,15 @@ export default function VisitShanghai() {
     if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
+
+  useEffect(() => {
+    if (location.hash) {
+      const element = document.getElementById(location.hash.slice(1))
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }, [location])
 
   return (
     <main className="pt-16">
@@ -160,24 +171,56 @@ export default function VisitShanghai() {
               </div>
               <div>
                 <h2 className="text-2xl font-semibold text-[#001B2F]">
-                  Welcome Orientation <span className="text-[#00A9B5]">CityWalk</span>
+                  Free Orientation <span className="text-[#00A9B5]">Walk</span>
                 </h2>
                 <p className="text-[#001B2F]/50 text-sm">
-                  Guided tour for tournament participants
+                  Hotel → Venue → Shanghai Life
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center justify-center py-12 rounded-xl bg-[#001B2F]/5 border border-dashed border-[#001B2F]/10">
-              <div className="text-center">
-                <Map className="w-12 h-12 text-[#00A9B5]/30 mx-auto mb-3" />
-                <p className="text-[#001B2F] font-semibold text-lg">
-                  Oct 22, 23, 24
-                </p>
-                <p className="text-[#001B2F]/40 text-sm mt-1 max-w-md">
-                  Detailed itinerary and registration information will be
-                  published here as the tournament approaches. Stay tuned!
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div className="space-y-5">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="px-3 py-1 rounded-full bg-[#00A9B5]/10 text-[#00A9B5] text-sm font-medium border border-[#00A9B5]/20">
+                    2 hours
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-[#00A9B5]/10 text-[#00A9B5] text-sm font-medium border border-[#00A9B5]/20">
+                    Zero cost
+                  </span>
+                  <span className="px-3 py-1 rounded-full bg-[#00A9B5]/10 text-[#00A9B5] text-sm font-medium border border-[#00A9B5]/20">
+                    All players welcome
+                  </span>
+                </div>
+
+                <div className="space-y-3 text-[#001B2F]">
+                  <div className="flex items-start gap-3">
+                    <MapPin className="w-5 h-5 text-[#00A9B5] mt-0.5 shrink-0" />
+                    <div>
+                      <p className="font-semibold">Hotel → Venue → Shanghai Life</p>
+                      <p className="text-[#001B2F]/60 text-sm">Meet at hotel lobby</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Globe className="w-5 h-5 text-[#00A9B5] mt-0.5 shrink-0" />
+                    <p>Oct 21 or 22, 5–7 PM</p>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-[#001B2F]/10">
+                  <p className="text-[#001B2F] font-semibold mb-1">Sign up</p>
+                  <p className="text-[#001B2F]/60 text-sm">
+                    Scan QR → DM us on Instagram
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-col items-center justify-center py-10 rounded-xl bg-white border border-[#00A9B5]/10">
+                <img
+                  src="/images/QR_KM.png"
+                  alt="Orientation Walk QR code"
+                  className="w-48 h-48 object-contain"
+                />
               </div>
             </div>
           </div>
