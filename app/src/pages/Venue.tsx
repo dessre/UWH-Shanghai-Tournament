@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MapPin, Waves, Utensils, Train, Hotel, Bus, Clock, ChevronDown, X } from 'lucide-react'
+import { MapPin, Waves, Utensils, Hotel, Clock, ChevronDown, X, Footprints } from 'lucide-react'
 
 const galleryImages = [
   {
@@ -55,51 +55,33 @@ const galleryImages = [
 
 const hotelGalleryImages = [
   {
-    src: '/images/hotel.webp',
-    alt: 'Yunfeng Grand Hotel',
-    title: 'Yunfeng Grand Hotel',
+    src: '/images/hotel.jpg',
+    alt: 'HuFang Building Hotel',
+    title: 'HuFang Building Hotel',
     featured: true,
   },
   {
-    src: '/images/hotel-entry.webp',
-    alt: 'Hotel Entry',
-    title: 'Hotel Entry',
+    src: '/images/gala%20dinner%20room.jpg',
+    alt: 'Gala Dinner',
+    title: 'Gala Dinner',
     featured: false,
   },
   {
-    src: '/images/hotel-lobby.webp',
-    alt: 'Hotel Lobby',
-    title: 'Hotel Lobby',
+    src: '/images/hotel%20entrance.jpg',
+    alt: 'Hotel Entrance',
+    title: 'Hotel Entrance',
     featured: false,
   },
   {
-    src: '/images/hotel-restaurant.webp',
+    src: '/images/gala%20dinner.jpg',
     alt: 'Hotel Restaurant',
     title: 'Hotel Restaurant',
     featured: false,
   },
   {
-    src: '/images/hotel-room.webp',
+    src: '/images/hotel%20room.jpg',
     alt: 'Hotel Room',
     title: 'Hotel Room',
-    featured: false,
-  },
-  {
-    src: '/images/1.jpg',
-    alt: 'Gala Dinner',
-    title: 'Gala Dinner',
-    featured: false,
-  },
-  {
-    src: '/images/2.jpg',
-    alt: 'Gala dinner celebration',
-    title: 'Celebration',
-    featured: false,
-  },
-  {
-    src: '/images/3.jpg',
-    alt: 'Gala Dinner',
-    title: 'Gala Dinner',
     featured: false,
   },
 ]
@@ -266,15 +248,12 @@ const poolFeatures = [
 ]
 
 const hotelInfo = {
-  name: 'Yunfeng Grand Hotel',
+  name: 'HuFang Building Hotel',
   role: 'Tournament Partner Hotel',
-  address: "1700 West Beijing Road, Jing'an District, Shanghai",
-  addressCn: '静安区北京西路1700号',
-  transport: [
-    { icon: Train, label: 'Closest Metro', detail: "Jing'an Temple Station (Lines 2, 7, 14)" },
-    { icon: Bus, label: 'By Car', detail: 'Driving distance to pool ~ 10min' },
-    { icon: MapPin, label: 'Walking', detail: 'Walking distance to pool ~ 30min' },
-  ],
+  address: "670 North ShanXi Road, Jing'an District, Shanghai",
+  addressCn: '陕西北路670号沪纺大厦',
+  transport: 'Only 4 minutes walking distance to the pool!',
+  image: '/images/hotel.jpg',
 }
 
 const attractions = [
@@ -456,6 +435,15 @@ export default function Venue() {
                 Tournament Partner <span className="text-[#00A9B5]">Hotel</span>
               </h2>
 
+              {/* Hotel Image */}
+              <div className="rounded-2xl overflow-hidden mb-6 h-64">
+                <img
+                  src={hotelInfo.image}
+                  alt={hotelInfo.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
               <div className="bg-white rounded-2xl p-6 shadow-sm mb-6">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="w-12 h-12 rounded-xl bg-[#00A9B5]/10 flex items-center justify-center">
@@ -481,26 +469,12 @@ export default function Venue() {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-[#001B2F]/5">
-                  <p className="text-[#001B2F]/70 text-sm mb-3 font-medium">
-                    Location & Directions
-                  </p>
-                  <div className="space-y-2">
-                    {hotelInfo.transport.map((t) => {
-                      const Icon = t.icon
-                      return (
-                        <div
-                          key={t.label}
-                          className="flex items-center gap-2 text-sm"
-                        >
-                          <Icon className="w-4 h-4 text-[#00A9B5] shrink-0" />
-                          <span className="text-[#001B2F]/50">
-                            {t.label}:
-                          </span>
-                          <span className="text-[#001B2F]">{t.detail}</span>
-                        </div>
-                      )
-                    })}
+                <div className="p-4 rounded-xl bg-[#00A9B5]/5 border border-[#00A9B5]/10">
+                  <div className="flex items-center gap-2">
+                    <Footprints className="w-5 h-5 text-[#00A9B5] shrink-0" />
+                    <p className="text-[#00A9B5] font-medium">
+                      {hotelInfo.transport}
+                    </p>
                   </div>
                 </div>
               </div>
