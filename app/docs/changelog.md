@@ -25,11 +25,39 @@
 - `Fixed` 对 bug 的修复。
 - `Security` 对安全性的改进。
 
+## \[2.1.0] - 2026-11-02
+
+### 改进 Changed
+
+- 文档体系收敛：`architecture.md` 仍然有效的架构要点（Lenis 全局初始化、路由表、交互状态、资源管理策略、Vercel 部署）并入 `README.md` 后删除该文件
+- 删除从未使用的 `roadmap.ref.md`
+- 修正 `README.md` 与现状不符处：React Router v6 → v7、shadcn/ui 组件清单更正为仅 `input`/`textarea`（按需添加）、技术栈移除已不再使用的 Framer Motion 与 Three.js、包管理器统一为 pnpm、项目结构移除已删除的 `App.css`
+- 补记 2026-06-28 之后未记录的变更（自 git 历史回溯）：
+  - 2026-06-26 价格套餐更新（`39d3baf`）、联系方式区块更新（`98901ec`）
+  - 2026-07-12 citywalk 与 venue early access 相关内容更新（`b53184c`）
+  - 2026-10-12 酒店信息更新、新增酒店和晚宴图片（`9248605`、`b23b12a`）
+
+### 删除 Removed
+
+- 清理零引用依赖 47 个（src 与配置文件均无引用，构建验证通过）：
+  - `@radix-ui/*` 全部 26 个（shadcn/ui 现有组件不依赖 Radix）
+  - `three`、`@types/three`、`@react-three/fiber`、`@react-three/drei`（Three.js 版精选卡片已在历史版本移除）
+  - `framer-motion`、`recharts`、`embla-carousel-react`、`react-day-picker`、`react-hook-form`、`@hookform/resolvers`、`zod`、`cmdk`、`date-fns`、`input-otp`、`next-themes`、`react-resizable-panels`、`sonner`、`vaul`、`class-variance-authority`
+  - 显式声明冗余的 `react-router`（`react-router-dom` 的传递依赖，src 无直接引用）
+  - devDependencies: `tw-animate-css`（未在任何配置或样式中引用）
+- 在用依赖保留：`react`、`react-dom`、`react-router-dom`、`lenis`、`lucide-react`、`clsx`、`tailwind-merge`
+
+<br />
+
+***
+
+<br />
+
 ## \[2.0.0] - 2026-06-28
 
 ### 新增 Added
 
-- 同时有 \`package-lock.json\` 和 \`pnpm-lock.yaml\`, 统一包管理文件, 删除了pnpm-lock.yaml
+- 同时有 `package-lock.json` 和 `pnpm-lock.yaml`，统一包管理文件，删除了 `package-lock.json`，仅保留 `pnpm-lock.yaml`
 - 统一图片位置（src/images → public）
 - 修改 `vercel.json` 配置文件，添加 SPA 路由重写规则以支持 BrowserRouter 部署
 - 首页 `LatestHighlights` 卡片链接改用 React Router `<Link>` 组件
